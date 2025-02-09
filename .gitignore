@@ -1,0 +1,7 @@
+# Git
+.git
+.git/*
+
+# Environment Variables
+.env
+.env
