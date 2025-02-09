@@ -1,7 +1,15 @@
-# Git
-.git
-.git/*
+node_modules
 
-# Environment Variables
+# OS
+.DS_Store
+Thumbs.db
+
+# Env
 .env
-.env
+.env.*
+!.env.example
+!.env.test
+
+# Vite
+vite.config.js.timestamp-*
+vite.config.ts.timestamp-*
