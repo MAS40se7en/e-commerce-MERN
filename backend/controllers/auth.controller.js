@@ -87,6 +87,8 @@ export const login = async (req, res) => {
                 },
                 message: "Login successful"
             })
+        } else {
+            res.status(401).json({ message: "Invalid email or password" });
         }
     } catch (error) {
         console.log("error in login controller", + error.message);

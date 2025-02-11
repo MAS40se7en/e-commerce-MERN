@@ -1,20 +1,22 @@
 import { useState } from "react"
 import { motion } from "framer-motion"
 import { Link } from "react-router-dom"
-import { LogIn, Mail, Loader, Lock, ArrowRight  } from "lucide-react"
+import { LogIn, Mail, Loader, Lock, ArrowRight } from "lucide-react"
+import { useUserStore } from "../stores/useUserStore"
 
 export default function LoginPage() {
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
-    const loading = false;
+	const [email, setEmail] = useState("");
+	const [password, setPassword] = useState("");
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        console.log(email, password);
-    }
+	const handleSubmit = (e) => {
+		e.preventDefault();
+		login(email, password);
+	}
 
-    return (
-        <div className='flex flex-col justify-center py-12 sm:px-6 lg:px-8'>
+	const { login, loading } = useUserStore();
+
+	return (
+		<div className='flex flex-col justify-center py-12 sm:px-6 lg:px-8'>
 			<motion.div
 				className='sm:mx-auto sm:w-full sm:max-w-md'
 				initial={{ opacity: 0, y: -20 }}
@@ -107,5 +109,5 @@ export default function LoginPage() {
 				</div>
 			</motion.div>
 		</div>
-    )
+	)
 }

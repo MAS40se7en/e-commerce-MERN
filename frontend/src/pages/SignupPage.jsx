@@ -2,10 +2,9 @@ import { useState } from "react"
 import { Link } from "react-router-dom"
 import { UserPlus, Mail, Lock, User, ArrowRight, Loader } from "lucide-react"
 import { motion } from "framer-motion"
+import { useUserStore } from "../stores/useUserStore";
 
 export default function SignupPage() {
-    const loading = false;
-
     const [formData, setFormData] = useState({
         name: "",
         email: "",
@@ -15,8 +14,10 @@ export default function SignupPage() {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log(formData);
+        signup(formData);
     }
+
+	const { signup, loading } = useUserStore();
     return (
         <div className="text-black flex flex-col justify-center py-12 sm:px-6 lg:px-8">
             <motion.div
