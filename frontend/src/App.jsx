@@ -3,10 +3,12 @@ import { Toaster } from 'react-hot-toast'
 import HomePage from './pages/HomePage'
 import SignupPage from './pages/SignupPage'
 import LoginPage from './pages/LoginPage'
+import AdminPage from './pages/AdminPage'
 import Navbar from './components/Navbar'
 import { useUserStore } from './stores/useUserStore'
 import { useEffect } from 'react'
 import LoadingSpinner from './components/LoadingSpinner'
+import CategoryPage from './pages/CategoryPage'
 
 export default function App() {
   const { user, checkAuth, checkingAuth } = useUserStore();
@@ -30,6 +32,8 @@ export default function App() {
         <Route path='/' element={<HomePage />} />
         <Route path='/signup' element={!user ? <SignupPage /> : <Navigate to='/' />} />
         <Route path='/login' element={!user ? <LoginPage /> : <Navigate to='/' />} />
+        <Route path='/admin-dashboard' element={user?.role === "admin" ? <AdminPage /> : <Navigate to='/login' />} />
+        <Route path='/category/:category' element={<CategoryPage />} />
       </Routes>
       </div>
       <Toaster />

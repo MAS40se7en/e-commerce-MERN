@@ -13,7 +13,7 @@ router.post("/", protectRoute, adminRoute, createProduct);
 
 router.delete("/:id", protectRoute, adminRoute, deleteProduct);
 
-router.patch("/", protectRoute, adminRoute, toggleFeaturedProduct);
+router.patch("/:id", protectRoute, adminRoute, toggleFeaturedProduct);
 
 
 export default router;
