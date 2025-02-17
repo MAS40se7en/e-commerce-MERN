@@ -10,13 +10,20 @@ import { useEffect } from 'react'
 import LoadingSpinner from './components/LoadingSpinner'
 import CategoryPage from './pages/CategoryPage'
 import CartPage from './pages/CartPage'
+import { useCartStore } from './stores/useCartStore'
 
 export default function App() {
   const { user, checkAuth, checkingAuth } = useUserStore();
+  const { getCartItems } = useCartStore();
 
   useEffect(() => {
     checkAuth();
   }, [checkAuth]);
+
+  useEffect(() => {
+
+		getCartItems();
+	}, [getCartItems]);
 
   if (checkingAuth) return <LoadingSpinner />
   return (
