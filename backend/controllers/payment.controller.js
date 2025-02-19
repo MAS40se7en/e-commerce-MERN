@@ -1,5 +1,6 @@
 import { stripe } from "../lib/stripe.js";
 import Order from "../models/order.model.js";
+import Coupon from "../models/coupon.model.js";
 
 async function creatStripeCoupon(discountPercentage) {
     const coupon = await stripe.coupons.create({
@@ -11,6 +12,8 @@ async function creatStripeCoupon(discountPercentage) {
 }
 
 async function createNewCoupon(userId) {
+    await Coupon.findOnwAndDelete({ userId });
+    
     const newCoupon = new Coupon({
         code: "GIFT" + Math.random().toString(36).substring(2, 8).toUpperCase(),
         discountPercentage: 10,
@@ -42,10 +45,11 @@ export const createCheckoutSession = async (req, res) => {
                     currency: "usd",
                     product_data: {
                         name: product.name,
-                        image: [product.image],
+                        images: [product.image],
                     },
                     unit_amount: amount,
-                }
+                },
+                quantity: product.quantity || 1,
             }
         });
 
@@ -63,7 +67,7 @@ export const createCheckoutSession = async (req, res) => {
         }
 
         const session = await stripe.checkout.sessions.create({
-            payment_method_types: ["card", "paypal"],
+            payment_method_types: ["card"],
             line_items: linItems,
             mode: "payment",
             success_url: `${process.env.CLIENT_URL}/purchase-success?session_id={CHECKOUT_SESSION_ID}`,

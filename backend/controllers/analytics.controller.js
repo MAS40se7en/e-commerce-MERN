@@ -1,5 +1,6 @@
 import Product from "../models/product.model.js";
 import User from "../models/user.model.js";
+import Order from "../models/order.model.js";
 
 async function getAnalyticsData() {
     const totalUsers = await User.countDocuments();
@@ -33,6 +34,8 @@ function getDatesInRange(startDate, endDate) {
         dates.push(currentDate.toISOString().split("T")[0]);
         currentDate.setDate(currentDate.getDate() + 1);
     }
+
+    return dates;
 }
 
 async function getDailySalesData(startDate, endDate) {

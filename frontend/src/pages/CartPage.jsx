@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom';
 import CartItem from '../components/CartItem';
 import PeopleAlsoBought from '../components/PeopleAlsoBought';
 import OrderSummary from '../components/OrderSummary';
+import GiftCouponCard from '../components/GiftCouponCard';
 
 const EmptyCartUI = () => (
     <motion.div
@@ -25,6 +26,7 @@ const EmptyCartUI = () => (
 
 export default function CartPage() {
     const { cart } = useCartStore();
+    console.log("cart", cart)
     return (
         <div className='py-8 md:py-16'>
             <div className='mx-auto max-w-screen-xl px-4 2xl:px-0'>
@@ -55,7 +57,7 @@ export default function CartPage() {
                             transition={{ duration: 0.5, delay: 0.4 }}
                         >
                             <OrderSummary />
-                            {/* <GiftCouponCart /> */}
+                            <GiftCouponCard />
                         </motion.div>
                     )}
                 </div>

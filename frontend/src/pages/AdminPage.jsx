@@ -6,6 +6,7 @@ import { useState, useEffect } from 'react';
 ///import AnalyticsTab from "../components/AnalyticsTab";
 import CreateProductForm from "../components/CreateProductForm";
 import ProductsList from "../components/ProductsList";
+import AnalyticsTab from '../components/AnalyticsTab';
 import { useProductStore } from "../stores/useProductStore";
 
 const tabs = [
@@ -51,7 +52,7 @@ export default function AdminPage() {
 				</div>
                 {activeTab === "create" && <CreateProductForm />}
 				{activeTab === "products" && <ProductsList />}
-				{/*activeTab === "analytics" && <AnalyticsTab />}*/}
+				{activeTab === "analytics" && <AnalyticsTab />}
 
         </div>
 
